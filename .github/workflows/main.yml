@@ -23,7 +23,7 @@ jobs:
           submodules: 'true'
 
       - name: Clone repository
-        run: git clone https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/${{ secrets.REPO }}.git
+        run: git clone --recurse-submodules https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/${{ secrets.REPO }}.git
 
       - name: Install hexo
         run: npm install -g hexo-cli
