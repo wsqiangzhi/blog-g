@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with: # with 表示所需要的参数
-        persist-credentials: fasle # false 是用 personal token，true 是使用 GitHub token
+        persist-credentials: false # false 是用 personal token，true 是使用 GitHub token
         fetch-depth: 0 # 保证能够 push 成功
     - name: Clone repository
       run: git clone https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/${{ secrets.REPO }}.git
