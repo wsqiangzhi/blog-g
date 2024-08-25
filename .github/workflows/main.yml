@@ -1,0 +1,39 @@
+name: Hexo Build and List
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with: # with 表示所需要的参数
+        persist-credentials: fasle # false 是用 personal token，true 是使用 GitHub token
+        fetch-depth: 0 # 保证能够 push 成功
+    - name: Clone repository
+      run: git clone https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/${{ secrets.REPO }}.git
+
+    - name: Install hexo
+      run: npm install -g hexo-cli
+      
+    - name: hexo Generate
+      run: |
+        npm install
+        hexo generate
+        ls -R public/
+      working-directory: ${{ secrets.REPO }}
+
+    - name: Commit and Push
+      run: |
+        cd public
+        git init
+        git checkout -b main
+        git add -A
+        git -c user.name='github actions by $' -c user.email='NO' commit -m 'update' 
+        git remote add origin https://${{ secrets.TOKEN }@github.com/wsqiangzhi/blog.git
+        git push -u origin main
+      working-directory: ${{ secrets.REPO }}
