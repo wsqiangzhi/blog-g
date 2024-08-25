@@ -20,6 +20,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+          submodules: 'true'
 
       - name: Clone repository
         run: git clone https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/${{ secrets.REPO }}.git
@@ -29,7 +30,7 @@ jobs:
 
       - name: hexo Generate
         run: |
-          npm install
+          npm ci
           hexo generate
           ls -R public/
         working-directory: ${{ secrets.REPO }}
