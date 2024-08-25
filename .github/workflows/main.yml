@@ -40,6 +40,6 @@ jobs:
           git checkout -b main
           git add -A
           git -c user.name='github actions' -c user.email='github-actions@github.com' commit -m 'update'
-          git remote add origin https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/${{ secrets.REPO }}.git
+          git remote add origin https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/blog.git
           git push -u origin main
         working-directory: ${{ secrets.REPO }}
