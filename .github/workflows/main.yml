@@ -30,7 +30,7 @@ jobs:
 
       - name: hexo Generate
         run: |
-          npm install
+          npm ci
           hexo generate
           ls -R public/
         working-directory: ${{ secrets.REPO }}
