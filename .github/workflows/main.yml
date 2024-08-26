@@ -40,6 +40,8 @@ jobs:
           cd public
           git init
           git checkout -b main
+          echo 'blog.wsqz.pp.ua' > CNAME
+          ls -R .
           git add -A
           git -c user.name='github actions' -c user.email='github-actions@github.com' commit -m 'update'
           git remote add origin https://${{ secrets.TOKEN }}@github.com/${{ secrets.USER }}/blog.git
